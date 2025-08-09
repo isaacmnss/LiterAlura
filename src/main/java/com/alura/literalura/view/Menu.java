@@ -1,10 +1,22 @@
 package com.alura.literalura.view;
 
+import com.alura.literalura.repository.LivroRepository;
+import com.alura.literalura.service.LivroService;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
+    public Menu(LivroRepository livroRepository) {
+    }
+
+    private LivroRepository livroRepository;
+    private final LivroService livroService = new LivroService(livroRepository);
+
+
+
     public void executarMenu(){
+
         Scanner scanner = new Scanner(System.in);
         int opcao = -1;
         String menu ="""
@@ -35,6 +47,7 @@ public class Menu {
 
             switch (opcao) {
                 case 1:
+                    System.out.println(livroService.buscarLivroWeb());
                     break;
                 case 2:
                     break;
