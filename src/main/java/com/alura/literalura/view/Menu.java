@@ -62,8 +62,10 @@ public class Menu {
                     autorService.listarAutores();
                     break;
                 case 4:
+                    autorService.listarAutoresVivosEmAno(scanner);
                     break;
                 case 5:
+                    livroService.listarLivrosPorIdioma(scanner);
                     break;
                 case 0:
                     System.out.println("Saindo...");

@@ -51,5 +51,23 @@ public class LivroService {
 
     }
 
+    public void listarLivrosPorIdioma(Scanner scanner){
+        System.out.println("Insira o idioma para realizar a busca:" +
+                "\npt - português" +
+                "\nen - inglês" +
+                "\nfr - francês" +
+                "\nes - espanhol");
+        String inputIdioma = scanner.nextLine();
+        List<Livro> livrosBuscados = livroRepository.findByIdioma(inputIdioma);
+        if(!livrosBuscados.isEmpty()){
+            System.out.println("Livros encontrados: ");
+            livrosBuscados.forEach(System.out::println);
+
+        }else{
+            System.out.println("Nenhum livro encontrado com este idioma");
+        }
+
+    }
+
 
 }
