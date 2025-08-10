@@ -1,18 +1,24 @@
 package com.alura.literalura.view;
 
-import com.alura.literalura.repository.LivroRepository;
+
+import com.alura.literalura.service.AutorService;
 import com.alura.literalura.service.LivroService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+@Component
 public class Menu {
-    public Menu(LivroRepository livroRepository) {
+    private final LivroService livroService;
+    private final AutorService autorService;
+
+    @Autowired
+    public Menu(LivroService livroService, AutorService autorService) {
+        this.livroService = livroService;
+        this.autorService = autorService;
     }
-
-    private LivroRepository livroRepository;
-    private final LivroService livroService = new LivroService(livroRepository);
-
 
 
     public void executarMenu(){
@@ -29,7 +35,7 @@ public class Menu {
                 
                 0 - Sair
                 """;
-        System.out.println("Seja bem vindo ao conversor de moeda\n");
+        System.out.println("Seja bem vindo ao Literalura\n");
         while (opcao != 0) {
             System.out.println(menu);
             boolean inputValido = false;
@@ -47,11 +53,13 @@ public class Menu {
 
             switch (opcao) {
                 case 1:
-                    System.out.println(livroService.buscarLivroWeb());
+                    livroService.persistirLivro(livroService.buscarLivroWeb());
                     break;
                 case 2:
+                    livroService.listarLivros();
                     break;
                 case 3:
+                    autorService.listarAutores();
                     break;
                 case 4:
                     break;

@@ -10,16 +10,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class LiteraluraApplication implements CommandLineRunner {
 
-    @Autowired
-    private LivroRepository livroRepository;
+    private final Menu menu;
 
-	public static void main(String[] args) {
-		SpringApplication.run(LiteraluraApplication.class, args);
-	}
+    @Autowired
+    public LiteraluraApplication(Menu menu) {
+        this.menu = menu;
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(LiteraluraApplication.class, args);
+    }
 
     @Override
-    public void run(String... args) throws Exception {
-        Menu menu = new Menu(livroRepository);
+    public void run(String... args) {
         menu.executarMenu();
     }
 }

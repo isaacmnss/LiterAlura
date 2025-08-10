@@ -1,4 +1,4 @@
 package com.alura.literalura.DTO;
 
-public class AutorDTO {
+public record AutorDTO (String nomeAutor, Integer anoNascimento, Integer anoFalecimento){
 }
